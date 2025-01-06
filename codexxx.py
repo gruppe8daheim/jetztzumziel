@@ -54,8 +54,8 @@ def main():
     # i is index, will be identical to the ITERATOR of for loop for all trips in tripsAtDepStation
     # trips that don't go to ArrStation in stop_sequence > stop_sequence.here should be removed here or in separate function linked here
     tripsFromDepToArrStation = collectTripsFromDepToArrStation(tripsAtDepStation, stopIDsOfArrivalStation)
- #   time = getCurrentTime()
-    time = "20:00:00"    # debug
+    time = getCurrentTime()
+ #   time = "20:00:00"    # debug
     for trip in sorted(tripsFromDepToArrStation, key=lambda trip: trip["arrival_time"]):    # SCHNELLSTER ZUG zum Ziel (ab jetzt) wird zuerst angezeigt
         route = getTripName(trip["trip_id"])                                                # nicht der, der zuerst abfährt :)
         depTime, depPlatform = getDepInfos(trip["trip_id"], stopIDsOfDepartureStation)
