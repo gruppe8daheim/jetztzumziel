@@ -169,12 +169,12 @@ def collectTripsAtDepartureStation(depStopIDs):
             if entry["stop_id"] in depStopIDs:
                 tripsAtDepartureStation.append({"trip_id": entry["trip_id"], "departure_time": entry["departure_time"], "stop_sequence": entry["stop_sequence"], "stop_id": entry["stop_id"]})
                # tripIDsAtDepartureStation.append(entry["trip_id"])    # ehemalige Idee, bis gesehen wurde, dass noch die stop_sequence (zum gleichen Trip zugeordnet) gebraucht wird
-    with open("./Regionalverkehr/stop_times.txt", encoding="utf8") as stopTimesRegionalFile:
-        reader = csv.DictReader(stopTimesRegionalFile)
-        for entry in reader:
-            if entry["stop_id"] in depStopIDs:
-                tripsAtDepartureStation.append({"trip_id": entry["trip_id"], "departure_time": entry["departure_time"], "stop_sequence": entry["stop_sequence"], "stop_id": entry["stop_id"]})
-               # tripIDsAtDepartureStation.append(entry["trip_id"])    # s.o.
+#    with open("./Regionalverkehr/stop_times.txt", encoding="utf8") as stopTimesRegionalFile:
+#        reader = csv.DictReader(stopTimesRegionalFile)
+#        for entry in reader:
+#            if entry["stop_id"] in depStopIDs:
+#                tripsAtDepartureStation.append({"trip_id": entry["trip_id"], "departure_time": entry["departure_time"], "stop_sequence": entry["stop_sequence"], "stop_id": entry["stop_id"]})
+#               # tripIDsAtDepartureStation.append(entry["trip_id"])    # s.o.
     return tripsAtDepartureStation
 
 # Sammle alle Reisen von vorher, allerdings NUR falls sie an der Zielhaltestelle halten,
@@ -190,16 +190,16 @@ def collectTripsFromDepToArrStation(trips, arrStopIDs):
                     if entry["trip_id"] == trip["trip_id"]:
                         if int(entry["stop_sequence"]) > int(trip["stop_sequence"]):
                             tripsFromDepToArrStation.append({"trip_id": entry["trip_id"], "arrival_time": entry["arrival_time"], "stop_sequence": entry["stop_sequence"], "stop_id": entry["stop_id"]})
-    with open("./Regionalverkehr/stop_times.txt", encoding="utf8") as stopTimesRegionalFile:
-        reader = csv.DictReader(stopTimesRegionalFile)
-        for entry in reader:
-            if entry["stop_id"] in arrStopIDs:
-                for trip in trips:
-                    if entry["trip_id"] == trip["trip_id"]:
+#    with open("./Regionalverkehr/stop_times.txt", encoding="utf8") as stopTimesRegionalFile:
+#        reader = csv.DictReader(stopTimesRegionalFile)
+#        for entry in reader:
+#            if entry["stop_id"] in arrStopIDs:
+#                for trip in trips:
+#                    if entry["trip_id"] == trip["trip_id"]:
                       #  print(type(entry["stop_sequence"]), entry["departure_time"], entry["stop_id"], entry["trip_id"], entry["stop_sequence"])    # debug
                       #  print(type(trip["stop_sequence"]), trip["departure_time"], trip["stop_id"], trip["trip_id"], trip["stop_sequence"])
-                        if int(entry["stop_sequence"]) > int(trip["stop_sequence"]):
-                            tripsFromDepToArrStation.append({"trip_id": entry["trip_id"], "arrival_time": entry["arrival_time"], "stop_sequence": entry["stop_sequence"], "stop_id": entry["stop_id"]})
+#                        if int(entry["stop_sequence"]) > int(trip["stop_sequence"]):
+#                            tripsFromDepToArrStation.append({"trip_id": entry["trip_id"], "arrival_time": entry["arrival_time"], "stop_sequence": entry["stop_sequence"], "stop_id": entry["stop_id"]})
     return tripsFromDepToArrStation
 
 # Erhalte Zugname ("RE73" etc.)
